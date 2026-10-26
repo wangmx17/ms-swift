@@ -1,0 +1,5 @@
+numpy==1.26.4
+torch==2.7.1.post1
+torch_musa==2.7.1.post1
+torchaudio==2.7.1a0+95c61b4
+torchvision==0.22.1+6b25dcc
