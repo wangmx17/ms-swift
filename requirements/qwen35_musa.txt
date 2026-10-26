@@ -1,0 +1,9 @@
+-c qwen35_musa_constraints.txt
+-r musa.txt
+datasets==4.8.4
+decord==0.6.0
+peft==0.18.1
+qwen_vl_utils==0.0.14
+torchada==0.1.102
+transformers==5.16.1
+trl==0.29.1
