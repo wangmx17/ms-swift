@@ -16,11 +16,11 @@ if [[ "$STAGE" == dpo && -z "${2:-}" ]]; then
     exit 2
 fi
 export MUSA_VISIBLE_DEVICES="${MUSA_VISIBLE_DEVICES:-0}"
-IFS=',' read -r -a QWEN35_DEVICE_LIST <<< "$MUSA_VISIBLE_DEVICES"
-if (( ${#QWEN35_DEVICE_LIST[@]} != 1 )); then
-    printf '此脚本需要 1 个 GPU，当前 MUSA_VISIBLE_DEVICES=%s\n' "$MUSA_VISIBLE_DEVICES" >&2
+if [[ ! "$MUSA_VISIBLE_DEVICES" =~ ^[0-9]+(,[0-9]+)*$ ]]; then
+    printf 'MUSA_VISIBLE_DEVICES 必须是逗号分隔的 GPU 编号\n' >&2
     exit 2
 fi
+IFS=',' read -r -a QWEN35_DEVICE_LIST <<< "$MUSA_VISIBLE_DEVICES"
 # Require the editable installation of this checkout.
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd -- "$SCRIPT_DIR/../../.." && pwd)"
@@ -46,7 +46,7 @@ mkdir -p "$RUN"/{logs,checkpoints}
 trap 'rc=$?; printf "%s\n" "$rc" > "$RUN/experiments.exit"' EXIT
 export LC_ALL=C
 export MASTER_PORT="${MASTER_PORT:-29636}"
-export NPROC_PER_NODE=1 OMP_NUM_THREADS=8
+export NPROC_PER_NODE="${#QWEN35_DEVICE_LIST[@]}" OMP_NUM_THREADS=8
 export TOKENIZERS_PARALLELISM=false
 export HF_HOME=/data/wangmx/hf_cache MODELSCOPE_CACHE=/data/wangmx/modelscope_cache
 export MPLCONFIGDIR="$RUN/matplotlib" TRITON_CACHE_DIR="$RUN/triton_cache"
