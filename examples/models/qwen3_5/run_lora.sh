@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-# Model: Qwen/Qwen3.5-4B; MUSA lora CPT -> SFT -> DPO.
-# Qwen3.5-4B 受控验证基线：默认各阶段 100 步，不代表收敛训练。
-# 不带参数运行完整流程；指定 cpt/sft/dpo 只运行该阶段。
-# 第二个参数可指定输入模型；单独 dpo 必须传入 SFT 产物。
+# Model: Qwen/Qwen3.5-4B; MUSA lora CPT -> SFT -> DPO, 100 steps per stage.
 usage() {
     printf '用法：bash %s [all|cpt|sft|dpo] [输入模型目录]\n' "$(basename "$0")"
 }
@@ -15,17 +12,16 @@ case "$STAGE" in
     *) usage >&2; exit 2 ;;
 esac
 if [[ "$STAGE" == dpo && -z "${2:-}" ]]; then
-    printf '单独运行 dpo 时，请在第二个参数指定 SFT 模型目录；LoRA 请使用合并后的权重目录。\n' >&2
+    printf '单独运行 dpo 时，请在第二个参数指定合并后的 SFT 模型目录。\n' >&2
     exit 2
 fi
-# 此基线固定 1 卡；可用 MUSA_VISIBLE_DEVICES 指定对应数量的卡号。
-QWEN35_DEVICES="${MUSA_VISIBLE_DEVICES:-0}"
-IFS=',' read -r -a QWEN35_DEVICE_LIST <<< "$QWEN35_DEVICES"
+export MUSA_VISIBLE_DEVICES="${MUSA_VISIBLE_DEVICES:-0}"
+IFS=',' read -r -a QWEN35_DEVICE_LIST <<< "$MUSA_VISIBLE_DEVICES"
 if (( ${#QWEN35_DEVICE_LIST[@]} != 1 )); then
-    printf '此脚本需要 1 个 GPU，当前 MUSA_VISIBLE_DEVICES=%s\n' "$QWEN35_DEVICES" >&2
+    printf '此脚本需要 1 个 GPU，当前 MUSA_VISIBLE_DEVICES=%s\n' "$MUSA_VISIBLE_DEVICES" >&2
     exit 2
 fi
-# Install this checkout first; a script's location does not select the installed package.
+# Require the editable installation of this checkout.
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd -- "$SCRIPT_DIR/../../.." && pwd)"
 python - "$REPO_ROOT" <<'PY_SOURCE'
@@ -50,17 +46,13 @@ mkdir -p "$RUN"/{logs,checkpoints}
 trap 'rc=$?; printf "%s\n" "$rc" > "$RUN/experiments.exit"' EXIT
 export LC_ALL=C
 export MASTER_PORT="${MASTER_PORT:-29636}"
-export MUSA_VISIBLE_DEVICES="${MUSA_VISIBLE_DEVICES:-0}" NPROC_PER_NODE=1 OMP_NUM_THREADS=8
+export NPROC_PER_NODE=1 OMP_NUM_THREADS=8
 export TOKENIZERS_PARALLELISM=false
 export HF_HOME=/data/wangmx/hf_cache MODELSCOPE_CACHE=/data/wangmx/modelscope_cache
 export MPLCONFIGDIR="$RUN/matplotlib" TRITON_CACHE_DIR="$RUN/triton_cache"
 export PYTORCH_MUSA_ALLOC_CONF=expandable_segments:True
 cd "$REPO_ROOT"
 DATA="${QWEN35_DATA_DIR:-/data/wangmx/datasets/qwen35_100steps}"
-DPO_DATA="$DATA"
-DPO_STEPS="${DPO_STEPS:-100}"
-DPO_LR="${DPO_LR:-1e-4}"
-if [[ ! "$DPO_STEPS" =~ ^[1-9][0-9]*$ ]]; then printf 'DPO_STEPS 必须为正整数\n' >&2; exit 2; fi
 CKPT="$RUN/checkpoints"
 printf '本轮训练产物：%s\n' "$RUN"
 
@@ -74,7 +66,6 @@ COMMON=(--torch_dtype bfloat16 --max_length 2048
     --dataset_num_proc 4 --dataloader_num_workers 2 --seed 42 --data_seed 42
     --add_version false --warmup_ratio 0.05)
 LORA=(--tuner_type lora --learning_rate 1e-4 --lora_rank 8 --lora_alpha 32 --target_modules all-linear)
-
 
 run_cpt() {
     local model="$1"
@@ -103,18 +94,14 @@ run_sft() {
 
 run_dpo() {
     local model="$1"
-    local -a diagnostics=()
-    if [[ -n "${QWEN35_DPO_DIAGNOSTICS:-}" ]]; then
-        diagnostics=(--external_plugins "$QWEN35_DPO_DIAGNOSTICS" --callbacks dpo_zero_check)
-    fi
     printf "\ndpo\n"
-    swift rlhf --rlhf_type dpo --rpo_alpha 0.1 --model "$model" --tuner_type lora --learning_rate "$DPO_LR" --lora_rank 8 --lora_alpha 32 --target_modules all-linear \
-        --dataset "$DPO_DATA/dpo_train.jsonl" --val_dataset "$DPO_DATA/dpo_val.jsonl" \
+    swift rlhf --rlhf_type dpo --rpo_alpha 0.1 --model "$model" "${LORA[@]}" \
+        --dataset "$DATA/dpo_train.jsonl" --val_dataset "$DATA/dpo_val.jsonl" \
         --add_non_thinking_prefix true \
-        --output_dir "$CKPT/dpo" --max_steps "$DPO_STEPS" --eval_steps 10 --eval_on_start true --save_total_limit 2 "${diagnostics[@]}" "${COMMON[@]}" 2>&1 | tee "$RUN/logs/dpo.log"
+        --output_dir "$CKPT/dpo" --max_steps 100 --eval_steps 10 --eval_on_start true --save_total_limit 2 "${COMMON[@]}" 2>&1 | tee "$RUN/logs/dpo.log"
 
     printf "\ndpo_merge\n"
-    swift export --model "$model" --adapters "$CKPT/dpo/checkpoint-$DPO_STEPS" \
+    swift export --model "$model" --adapters "$CKPT/dpo/checkpoint-100" \
         --merge_lora true --output_dir "$CKPT/dpo_merged" 2>&1 | tee "$RUN/logs/dpo_merge.log"
 }
 
