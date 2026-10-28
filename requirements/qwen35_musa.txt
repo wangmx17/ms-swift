@@ -1,0 +1,11 @@
+# Incremental requirements for:
+# registry.mthreads.com/mcctest/training-suite:v2.1.7-rc4-qwen35-qwen38-20260930
+# From the cloned repository root, install this source and these packages together:
+# python -m pip install --no-deps --no-build-isolation -e . -r requirements/qwen35_musa.txt
+# Retain the image's MUSA PyTorch, Transformers 5.2.0, TE and flash-attention wheels.
+# The image ships ms-swift 4.0.2, datasets 3.0.0 and PEFT 0.20.0, but no TRL.
+# These pins reproduce the successful ms-swift 4.7.0.dev0 experiment environment.
+# Models and the six local JSONL files must already be prepared; see MUSA-support.md.
+datasets==4.8.4
+peft==0.18.1
+trl==0.29.1
