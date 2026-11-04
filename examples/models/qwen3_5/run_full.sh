@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export TRAINING_MUSA_ADAPTOR_AUTOLOAD=1
 # Model: Qwen/Qwen3.5-4B; MUSA full CPT -> SFT -> DPO, 100 steps per stage.
 usage() {
     printf '用法：bash %s [all|cpt|sft|dpo] [输入模型目录]\n' "$(basename "$0")"
