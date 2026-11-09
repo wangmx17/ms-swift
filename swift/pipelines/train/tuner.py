@@ -339,8 +339,8 @@ def prepare_adapter(args: SftArguments, model, *, template=None, train_dataset=N
         model = Swift.prepare_model(model, {'reft': reft_config})
     elif args.tuner_type == 'bone':
         # Version loosing
-        from peft import BoneConfig
-        bone_config = BoneConfig(
+        from peft import MissConfig
+        bone_config = MissConfig(
             target_modules=target_modules,
             r=args.reft_rank,
             init_weights=args.init_weights,
