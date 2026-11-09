@@ -1,0 +1,17 @@
+--- a/transformers/quantizers/quantizer_finegrained_fp8.py
++++ b/transformers/quantizers/quantizer_finegrained_fp8.py
+@@ -42,7 +42,13 @@
+             else:
+                 raise RuntimeError("No GPU or XPU found. A GPU or XPU is needed for FP8 quantization.")
+ 
+-        if torch.cuda.is_available():
++        device_map = kwargs.get("device_map")
++        devices = device_map.values() if isinstance(device_map, dict) else (device_map,)
++        is_musa_target = (
++            bool(device_map) and all(str(device).startswith("musa") for device in devices)
++            and hasattr(torch, "musa") and torch.musa.is_available()
++        )
++        if torch.cuda.is_available() and not is_musa_target:
+             compute_capability = torch.cuda.get_device_capability()
+             major, minor = compute_capability
+             if (major < 8) or (major == 8 and minor < 9):
