@@ -7,7 +7,7 @@ These examples provide a four-node launcher, training script, effective-token me
 Download the original LLaVA-Instruct-150K JSON and extract the corresponding COCO train2014 images, then run:
 
 ```bash
-python3 examples/models/qwen3_5/preprocess_llava_qwen38.py \
+python3 examples/models/qwen3_8/preprocess_llava_qwen38.py \
   --input /mnt_moer/wangmx/datasets/LLaVA-Instruct-150K/llava_instruct_150k.json \
   --image-dir /mnt_moer/wangmx/llava_instruct_150k_preprocessed/images \
   --output /mnt_moer/wangmx/llava_instruct_150k_preprocessed/llava_instruct_150k_swift.jsonl
@@ -17,10 +17,10 @@ All fields, conversations and `<image>` markers are preserved. Only `image` is r
 
 ## Run training
 
-Replace the four placeholder hosts in `examples/models/qwen3_5/hostfile` with actual SSH hosts; the first host is the master. Defaults are eight GPUs per node, SSH user root and port 62216. Adjust model/data defaults in the training script for your deployment. Paths must be shared consistently across nodes.
+Replace the four placeholder hosts in `examples/models/qwen3_8/hostfile` with actual SSH hosts; the first host is the master. Defaults are eight GPUs per node, SSH user root and port 62216. Adjust model/data defaults in the training script for your deployment. Paths must be shared consistently across nodes.
 
 ```bash
-bash examples/models/qwen3_5/mcore_qwen3_8_27b_4node_launch.sh
+bash examples/models/qwen3_8/mcore_qwen3_8_27b_4node_launch.sh
 ```
 
 Defaults: TP4, PP1, CP1, SP enabled, micro batch 8, GBS64, BF16, 1000 steps and a maximum sequence length of 8192. Full/uniform recomputation uses one layer per group. RoPE fusion and manual GC every 100 steps are enabled. Learning rate is 1e-5 with cosine decay, minimum 1e-6 and a 0.05 warmup fraction. The vision tower and aligner are frozen during SFT; not every multimodal parameter is trained. The test plan's `FORCE_BALANCE=0` has no implementation in the validated environment and is not an effective training switch.
@@ -28,7 +28,7 @@ Defaults: TP4, PP1, CP1, SP enabled, micro batch 8, GBS64, BF16, 1000 steps and 
 The launcher accepts `HOSTFILE`, `SSH_PORT`, `MASTER_ADDR`, `MASTER_PORT`, `OUTPUT_DIR`, `TP`, `PP`, `CP`, `MICRO_BATCH_SIZE`, `GLOBAL_BATCH_SIZE` and `TRAIN_ITERS` environment variables. Per-node stdout goes to `OUTPUT_DIR/logs`; the framework saves `args.json`, `logging.jsonl`, weights and `images/train_loss.png` in its versioned output directory.
 
 ```bash
-bash examples/models/qwen3_5/mcore_qwen3_8_27b_4node_launch.sh stop
+bash examples/models/qwen3_8/mcore_qwen3_8_27b_4node_launch.sh stop
 ```
 
 Stop sends SIGTERM only to a session-leading process group whose launcher script path and `OUTPUT_DIR` match this run. Set the same `OUTPUT_DIR` when stopping a run with a custom output location.

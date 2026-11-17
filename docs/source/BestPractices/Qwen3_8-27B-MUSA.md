@@ -7,7 +7,7 @@
 先下载 LLaVA-Instruct-150K 的原始 JSON，并解压对应 COCO train2014 图片，再执行：
 
 ```bash
-python3 examples/models/qwen3_5/preprocess_llava_qwen38.py \
+python3 examples/models/qwen3_8/preprocess_llava_qwen38.py \
   --input /mnt_moer/wangmx/datasets/LLaVA-Instruct-150K/llava_instruct_150k.json \
   --image-dir /mnt_moer/wangmx/llava_instruct_150k_preprocessed/images \
   --output /mnt_moer/wangmx/llava_instruct_150k_preprocessed/llava_instruct_150k_swift.jsonl
@@ -17,10 +17,10 @@ python3 examples/models/qwen3_5/preprocess_llava_qwen38.py \
 
 ## 启动训练
 
-将 `examples/models/qwen3_5/hostfile` 的四个占位主机名替换为实际 SSH 主机地址，第一行为 master。默认每机 8 卡，SSH 用户为 root，端口为 62216。修改训练脚本中的模型、数据路径默认值以匹配部署；节点间共享路径必须一致。
+将 `examples/models/qwen3_8/hostfile` 的四个占位主机名替换为实际 SSH 主机地址，第一行为 master。默认每机 8 卡，SSH 用户为 root，端口为 62216。修改训练脚本中的模型、数据路径默认值以匹配部署；节点间共享路径必须一致。
 
 ```bash
-bash examples/models/qwen3_5/mcore_qwen3_8_27b_4node_launch.sh
+bash examples/models/qwen3_8/mcore_qwen3_8_27b_4node_launch.sh
 ```
 
 默认 TP4、PP1、CP1、SP 开启、micro batch 8、GBS64、BF16、1000 步，序列长度上限 8192；开启 full/uniform 重计算（每组 1 层）、RoPE fusion 和每 100 步 manual GC。学习率 1e-5、cosine、最低 1e-6、预热比例 0.05。SFT 冻结视觉塔和对齐模块，因此不能描述为整个多模态模型全部参数参与训练。测试方案中的 `FORCE_BALANCE=0` 在本验证环境没有对应实现，不是一个实际生效的训练开关。
@@ -28,7 +28,7 @@ bash examples/models/qwen3_5/mcore_qwen3_8_27b_4node_launch.sh
 启动器支持 `HOSTFILE`、`SSH_PORT`、`MASTER_ADDR`、`MASTER_PORT`、`OUTPUT_DIR`、`TP`、`PP`、`CP`、`MICRO_BATCH_SIZE`、`GLOBAL_BATCH_SIZE` 和 `TRAIN_ITERS` 环境变量。每节点输出写入 `OUTPUT_DIR/logs`，框架在其版本目录保存 `args.json`、`logging.jsonl`、权重和 `images/train_loss.png`。
 
 ```bash
-bash examples/models/qwen3_5/mcore_qwen3_8_27b_4node_launch.sh stop
+bash examples/models/qwen3_8/mcore_qwen3_8_27b_4node_launch.sh stop
 ```
 
 停止命令仅向本脚本路径及 `OUTPUT_DIR` 匹配的独立训练进程组发送 SIGTERM；使用自定义输出目录时，停止命令也需设置相同的 `OUTPUT_DIR`。

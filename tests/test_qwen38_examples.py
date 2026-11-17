@@ -11,7 +11,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-EXAMPLES = ROOT / 'examples/models/qwen3_5'
+EXAMPLES = ROOT / 'examples/models/qwen3_8'
 spec = importlib.util.spec_from_file_location('qwen38_preprocess', EXAMPLES / 'preprocess_llava_qwen38.py')
 preprocess_module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(preprocess_module)
@@ -73,6 +73,7 @@ class Qwen38ExamplesTest(unittest.TestCase):
             args = json.loads(result)
             self.assertEqual(args[0], 'sft')
             flags = dict(zip(args[1::2], args[2::2]))
+            self.assertEqual(flags['--external_plugins'], str(EXAMPLES / 'qwen38_token_metrics.py'))
             expected = {
                 '--tensor_model_parallel_size': '4',
                 '--pipeline_model_parallel_size': '1',
@@ -94,7 +95,7 @@ class Qwen38ExamplesTest(unittest.TestCase):
     def test_stop_does_not_signal_another_output_directory(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            scripts = root / 'examples/models/qwen3_5'
+            scripts = root / 'examples/models/qwen3_8'
             scripts.mkdir(parents=True)
             launcher = scripts / 'mcore_qwen3_8_27b_4node_launch.sh'
             shutil.copyfile(EXAMPLES / launcher.name, launcher)

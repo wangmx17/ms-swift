@@ -34,7 +34,7 @@ TRAIN_ITERS="${TRAIN_ITERS:-1000}"
 mkdir -p "$OUTPUT_DIR"
 
 megatron sft \
-    --external_plugins "${REPO_ROOT}/examples/models/qwen3_5/qwen38_token_metrics.py" \
+    --external_plugins "${REPO_ROOT}/examples/models/qwen3_8/qwen38_token_metrics.py" \
     --model "$MODEL" \
     --dataset "$DATASET" \
     --tuner_type full \
