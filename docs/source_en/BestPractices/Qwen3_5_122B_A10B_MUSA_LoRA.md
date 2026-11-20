@@ -4,19 +4,13 @@ This example targets four nodes with eight S5000 80GiB GPUs each, using Megatron
 
 ## Environment and prerequisites
 
-- Node aliases are worker31008, worker31013, worker31029 and worker31030; the container is wmx_megatron. Aliases must resolve inside the containers and SSH aliases must enter the corresponding training containers without interactive authentication. Remote users need GPU device access.
-- All nodes read the shared /bwykj_ssd mount. The repository is /bwykj_ssd/wangmx/ms-swift, the model is /bwykj_ssd/models/Qwen3.5-122B-A10B and the dataset is /bwykj_ssd/datasets/chinatax-qa.jsonl.
-- The master address is 10.124.31.8 and MASTER_PORT defaults to 29535. Training nodes must be able to communicate with each other.
-- Validation used registry.mthreads.com/public/training-suite:v2.2.0-rc5-py312-20261105 with driver 3.3.5-server and existing project compatibility fixes. The stock image alone is not the complete validated environment. This PR does not install dependencies or patch frameworks.
-- Validated dependencies include numpy1.26.1, datasets4.8.4, pyarrow22.0.0, peft0.18.1, mcore-bridge1.6.5, binpacking1.5.2 and future1.0.0. The environment retains TE MR169 Python revisions with the 1105 native libraries, Megatron routing-mask fixes, the SGLang axial-RoPE import fix, and the save-end Gloo barrier fix.
-- The master container runs as root. setpriv creates outputs using shared-storage UID1000/GID1001, and shared GID1000 grants cross-node write access. Adapt these IDs and permissions for other clusters.
+- Validated dependencies include numpy1.26.1, datasets4.8.4, pyarrow22.0.0, peft0.18.1, mcore-bridge1.6.5, binpacking1.5.2 and future1.0.0. The environment retains TE MR169 Python revisions with compatible native libraries, Megatron routing-mask fixes, the SGLang axial-RoPE import fix, and the save-end Gloo barrier fix.
 
 ## Launch
 
-On the worker31008 host or inside its wmx_megatron container:
+Adapt the node, container, shared-path and permission settings in the launcher to your environment, then run from the repository root:
 
 ```bash
-cd /bwykj_ssd/wangmx/ms-swift
 bash examples/models/qwen3_5/mcore_qwen3_5_122b_4node_tuned_launch.sh --check
 bash examples/models/qwen3_5/mcore_qwen3_5_122b_4node_tuned_launch.sh
 ```
@@ -29,7 +23,7 @@ MAX_STEPS=100 bash examples/models/qwen3_5/mcore_qwen3_5_122b_4node_tuned_launch
 
 MASTER_PORT overrides the default port. MERGE_LORA=true requests full weight merging; this tuned parallel configuration has only been verified through adapter saving. The 20-step confirmations did not reach eval_steps=200, so evaluation was not performed.
 
-Logs are /bwykj_ssd/wangmx/output/qwen122-lora-YYYYMMDD-HHMMSS/logs/rank0.log through rank3.log. The launcher retains independent timestamp directories, shared permissions, and failure cleanup matched to the current output_dir instead of broad pkill patterns.
+Logs are <output_dir>/logs/rank0.log through rank3.log. The launcher retains independent timestamp directories, shared permissions, and failure cleanup matched to the current output_dir instead of broad pkill patterns.
 
 ## Effective settings and asynchronous execution
 

@@ -4,19 +4,13 @@
 
 ## 环境与准备
 
-- 四个节点别名为 worker31008、worker31013、worker31029、worker31030；容器名为 wmx_megatron。节点别名需要在容器内解析，并通过已配置的SSH别名进入相应训练容器；远端用户需有GPU设备权限。
-- 四机均可读取共享目录 /bwykj_ssd。仓库位于 /bwykj_ssd/wangmx/ms-swift，模型为 /bwykj_ssd/models/Qwen3.5-122B-A10B，数据为 /bwykj_ssd/datasets/chinatax-qa.jsonl。
-- 主节点地址为10.124.31.8，默认MASTER_PORT为29535；所有训练节点之间需可通信。
-- 验证环境使用 registry.mthreads.com/public/training-suite:v2.2.0-rc5-py312-20261105、驱动3.3.5-server，并保留本项目此前的兼容修复。原始镜像本身不等同于完整验证环境；本PR不自动安装依赖或修改框架。
-- 已验证依赖包括 numpy1.26.1、datasets4.8.4、pyarrow22.0.0、peft0.18.1、mcore-bridge1.6.5、binpacking1.5.2、future1.0.0。TE沿用MR169的Python修订和1105原生库；Megatron路由掩码、SGLang轴向RoPE导入处理及保存末尾Gloo等待修复为既有环境改动。
-- 主容器以root运行，使用setpriv按共享存储UID1000/GID1001创建输出目录，并使用共同GID1000共享写入；其它集群需按实际账号和权限调整。
+- 已验证依赖包括 numpy1.26.1、datasets4.8.4、pyarrow22.0.0、peft0.18.1、mcore-bridge1.6.5、binpacking1.5.2、future1.0.0。TE沿用MR169的Python修订和配套原生库；Megatron路由掩码、SGLang轴向RoPE导入处理及保存末尾Gloo等待修复为既有环境改动。
 
 ## 启动
 
-在worker31008宿主机或wmx_megatron容器中执行：
+先按实际环境调整启动脚本中的节点、容器、共享路径和权限配置，再从仓库根目录执行：
 
 ```bash
-cd /bwykj_ssd/wangmx/ms-swift
 bash examples/models/qwen3_5/mcore_qwen3_5_122b_4node_tuned_launch.sh --check
 bash examples/models/qwen3_5/mcore_qwen3_5_122b_4node_tuned_launch.sh
 ```
@@ -29,7 +23,7 @@ MAX_STEPS=100 bash examples/models/qwen3_5/mcore_qwen3_5_122b_4node_tuned_launch
 
 `MASTER_PORT`可以覆盖默认端口。`MERGE_LORA=true`请求完整权重合并；本次最佳并行配置只验证了adapter保存，尚未验证完整合并。20步未达到eval_steps=200，因此这两组确认没有执行评估。
 
-日志位于 /bwykj_ssd/wangmx/output/qwen122-lora-YYYYMMDD-HHMMSS/logs/rank0.log 至 rank3.log。启动器保留每次独立目录、共享权限和按本次output_dir精确匹配的失败清理，不使用宽泛的pkill。
+日志位于 <output_dir>/logs/rank0.log 至 rank3.log。启动器保留每次独立目录、共享权限和按本次output_dir精确匹配的失败清理，不使用宽泛的pkill。
 
 ## 生效参数与异步模式
 
