@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-# Measured on 2026-11-19: tp1_pp1_ep8_mb2_gbs256_confirm20, 26803.9 estimated tokens/s across 32 GPUs.
+# Historical parallel-strategy measurement on 2026-11-19: tp1_pp1_ep8_mb2_gbs256_confirm20, 26803.9 estimated tokens/s across 32 GPUs.
 # Benchmark defaults: 20 steps, adapter-only saving; see docs/source_en/BestPractices/Qwen3_5_122B_A10B_MUSA_LoRA.md.
+# Current optimizations: TE cross entropy + manual GC; router fusion disabled.
 set -euo pipefail
-repo=/bwykj_ssd/wangmx/ms-swift
+repo=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)
 [[ $(hostname -s) == worker31008 ]] || { echo 'Run on worker31008' >&2; exit 2; }
 if [[ ! -e /.dockerenv ]]; then
-    exec docker exec -i -e MAX_STEPS="${MAX_STEPS-20}" -e MERGE_LORA="${MERGE_LORA:-false}" -e MASTER_PORT="${MASTER_PORT:-29535}" wmx_megatron bash "$repo/examples/models/qwen3_5/mcore_qwen3_5_122b_4node_tuned_launch.sh" "$@"
+    exec docker exec -i -e BWY_RUNTIME_ROOT="${BWY_RUNTIME_ROOT:-/bwykj_ssd/wangmx/qwen122-runtime}" -e MAX_STEPS="${MAX_STEPS-20}" -e MERGE_LORA="${MERGE_LORA:-false}" -e MASTER_PORT="${MASTER_PORT:-29535}" qwen35_test bash "$repo/examples/models/qwen3_5/mcore_qwen3_5_122b_4node_tuned_launch.sh" "$@"
 fi
 nodes=(worker31008 worker31013 worker31029 worker31030)
 script="$repo/examples/models/qwen3_5/lora_122b_tuned_node.sh"
@@ -38,9 +39,9 @@ trap cleanup_failed_run EXIT
 echo "Training logs: $run/logs"
 for rank in 0 1 2 3; do
     if ((rank==0)); then
-        MERGE_LORA="$merge" MAX_STEPS="$steps" MASTER_PORT="$port" bash "$script" "$rank" "$run" >"$run/logs/rank0.log" 2>&1 &
+        BWY_RUNTIME_ROOT="${BWY_RUNTIME_ROOT:-/bwykj_ssd/wangmx/qwen122-runtime}" MERGE_LORA="$merge" MAX_STEPS="$steps" MASTER_PORT="$port" bash "$script" "$rank" "$run" >"$run/logs/rank0.log" 2>&1 &
     else
-        ssh -n -o BatchMode=yes "${nodes[$rank]}" "export PATH=/usr/local/bin:\$PATH MAX_STEPS='$steps' MASTER_PORT='$port' MERGE_LORA='$merge'; exec bash '$script' '$rank' '$run'" >"$run/logs/rank$rank.log" 2>&1 &
+        ssh -n -o BatchMode=yes "${nodes[$rank]}" "export PATH=/usr/local/bin:\$PATH MAX_STEPS='$steps' MASTER_PORT='$port' MERGE_LORA='$merge' BWY_RUNTIME_ROOT='${BWY_RUNTIME_ROOT:-/bwykj_ssd/wangmx/qwen122-runtime}'; exec bash '$script' '$rank' '$run'" >"$run/logs/rank$rank.log" 2>&1 &
     fi
 done
 for rank in 0 1 2 3; do wait -n || { echo "Training failed; see $run/logs" >&2; exit 1; }; done
