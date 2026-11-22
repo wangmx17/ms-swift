@@ -4,10 +4,12 @@ Only versioned, plain int tensors qualify. PyTorch writes (including writes
 through normal aliases) invalidate entries. External/raw-pointer or .data
 writes that bypass the version counter are outside this opt-in contract.
 """
-from collections import Counter, OrderedDict
 import torch
+from collections import Counter, OrderedDict
+
 
 class PackedSpansCache:
+
     def __init__(self, original, max_entries=64, max_elements=4096):
         self.original = original
         self.max_entries = max_entries
@@ -18,12 +20,10 @@ class PackedSpansCache:
     def stamp(self, x):
         if x is None:
             return None
-        if (type(x) is not torch.Tensor or x.ndim != 1 or
-            x.dtype not in (torch.int32, torch.int64) or x.requires_grad or
-            x.numel() > self.max_elements):
+        if (type(x) is not torch.Tensor or x.ndim != 1 or x.dtype not in (torch.int32, torch.int64) or x.requires_grad
+                or x.numel() > self.max_elements):
             raise TypeError('not cacheable')
-        return (x._version, tuple(x.shape), tuple(x.stride()),
-                x.storage_offset(), x.dtype, x.device)
+        return (x._version, tuple(x.shape), tuple(x.stride()), x.storage_offset(), x.dtype, x.device)
 
     def __call__(self, cumulative, padded, total):
         try:
@@ -46,8 +46,8 @@ class PackedSpansCache:
         self.counts['miss'] += 1
         result = self.original(cumulative, padded, total)
         # The audited original returns a list of immutable integer triples.
-        if not (type(result) is list and all(type(s) is tuple and len(s)==3
-                and all(type(v) is int for v in s) for s in result)):
+        if not (type(result) is list
+                and all(type(s) is tuple and len(s) == 3 and all(type(v) is int for v in s) for s in result)):
             self.counts['unexpected_result'] += 1
             return result
         self.entries[key] = (cumulative, padded, stamp, tuple(result))
