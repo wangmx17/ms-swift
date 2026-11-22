@@ -43,10 +43,11 @@ export GDN_RETAINED_STATE_SOURCE="$BWY_RUNTIME_ROOT/retained/torch_musa_op_exten
 export LORA_ADD_MODE=fused
 export BWY_CHUNKED_HEAD_MODE=chunk512
 export BWY_ATTENTION_GROUP_MODE=group4
+export BWY_ATTENTION_METADATA_MODE=cached
 exec python -m swift.cli._megatron.main sft \
     --model /bwykj_ssd/models/Qwen3.5-122B-A10B \
-    --external_plugins "$OPT/offsets/offsets_cache_plugin.py" "$OPT/resolver/resolver_cache_plugin.py" "$OPT/partial/partial_gdn_plugin.py" "$OPT/runtime/allocator_fraction_plugin.py" "$OPT/runtime/qwen122_native_flops_plugin.py" "$OPT/runtime/trace_allocator_plugin.py" "$OPT/runtime/memory_counters_plugin.py" "$OPT/runtime/fla_autotune_cache_plugin.py" "$OPT/runtime/bucket_warmup_plugin.py" "$OPT/layer/layer_gdn_recompute_plugin.py" "$OPT/lora/lora_add_plugin.py" "$OPT/head/chunked_head_runtime_plugin.py" "$OPT/attention/attention_group_plugin.py" \
-    --callbacks shared_offsets_cache resolver_cache_audit partial_gdn allocator_fraction native_flops gdn_gradstats_warmup gdn_trace memory_counters fla_autotune_cache layer_gdn_recompute_audit lora_add_audit chunked_head_audit attention_group_audit \
+    --external_plugins "$OPT/attention_metadata/attention_metadata_plugin.py" "$OPT/offsets/offsets_cache_plugin.py" "$OPT/resolver/resolver_cache_plugin.py" "$OPT/partial/partial_gdn_plugin.py" "$OPT/runtime/allocator_fraction_plugin.py" "$OPT/runtime/qwen122_native_flops_plugin.py" "$OPT/runtime/trace_allocator_plugin.py" "$OPT/runtime/memory_counters_plugin.py" "$OPT/runtime/fla_autotune_cache_plugin.py" "$OPT/runtime/bucket_warmup_plugin.py" "$OPT/layer/layer_gdn_recompute_plugin.py" "$OPT/lora/lora_add_plugin.py" "$OPT/head/chunked_head_runtime_plugin.py" "$OPT/attention/attention_group_plugin.py" \
+    --callbacks attention_metadata_audit shared_offsets_cache resolver_cache_audit partial_gdn allocator_fraction native_flops gdn_gradstats_warmup gdn_trace memory_counters fla_autotune_cache layer_gdn_recompute_audit lora_add_audit chunked_head_audit attention_group_audit \
     --save_safetensors true \
     --save_missing_weights true \
     --merge_lora "${MERGE_LORA:-false}" \

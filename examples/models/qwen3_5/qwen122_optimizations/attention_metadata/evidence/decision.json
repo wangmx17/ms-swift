@@ -1,0 +1,22 @@
+{
+  "time": "2026-11-22 18:19:21",
+  "decision": "adopt",
+  "optimization": "A2 packed attention metadata reuse",
+  "branch": "codex/qwen122-14-attention-metadata-20261122",
+  "server_checkout": "/bwykj_ssd/wangmx/ms-swift-pr-stack-20261122",
+  "performance": {
+    "baseline_seconds": 29.139917666666665,
+    "candidate_seconds": 28.080978999999996,
+    "baseline_tgs": 1120.4215096787107,
+    "candidate_tgs": 1162.6728022552206,
+    "change": 0.03771017622521877,
+    "decision": "Adopted after numerical/runtime/source/cache/trace review; short-run boundary retained."
+  },
+  "audit": "/bwykj_ssd/wangmx/review/gdn-tilelang-20261120/attention-metadata-20261122/audit.json",
+  "numerical": "22 CPU cases; 20 GPU comparisons output/qkv gradients and CPU/MUSA RNG bitwise equal. Full-network short loss difference max0.00026417, grad_norm0.00056589; no long-run equivalence claim.",
+  "trace": "Rank0 original spans/copy+sync352 to4; rank7 308 to4; step5 with Python stacks. Inclusive host wait is not additive or guaranteed recovered time.",
+  "scope": "One AB pure10-step pair, common window5-10. No confidence interval or 100-step validation for A2 yet. Cache invalidation assumes normal versioned PyTorch writes; raw pointer/data writes unsupported.",
+  "packaged_node_sha256": "ea62f0cd92fb68d761c7faa4dc4ff4061e36da6eb5a3e1f6e19096d1e5a9516a",
+  "formal_node": "/bwykj_ssd/wangmx/ms-swift/examples/models/qwen3_5/lora_122b_tuned_node.sh",
+  "formal_node_sha256": "8bdd82d5d3384d3208700933b9e20ebeb29e0d3d68245ff34128108c127be1a3"
+}

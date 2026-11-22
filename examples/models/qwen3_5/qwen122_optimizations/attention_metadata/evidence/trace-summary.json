@@ -1,0 +1,270 @@
+{
+  "baseline0": {
+    "trace": "/bwykj_ssd/wangmx/output/qwen122-lora-20261122-173110/v0-20261122-173147/rank0-step5.trace.json",
+    "scopes": {
+      "original_spans": {
+        "calls": 352,
+        "inclusive_us": 1571186.46484375,
+        "runtime": {
+          "musaMemcpyAsync": {
+            "count": 352,
+            "inclusive_us": 1546942.119140625,
+            "max_us": 41272.9326171875
+          },
+          "musaStreamSynchronize": {
+            "count": 352,
+            "inclusive_us": 465.5947265625,
+            "max_us": 4.015625
+          }
+        },
+        "cpu_ops": {
+          "aten::_to_copy": {
+            "count": 352,
+            "inclusive_us": 1553471.3623046875,
+            "max_us": 41293.5078125
+          },
+          "aten::copy_": {
+            "count": 352,
+            "inclusive_us": 1551821.4755859375,
+            "max_us": 41288.6650390625
+          }
+        },
+        "allocation": {},
+        "launched_kernels": {}
+      },
+      "cache_call": {
+        "calls": 0,
+        "inclusive_us": 0.0,
+        "runtime": {},
+        "cpu_ops": {},
+        "allocation": {},
+        "launched_kernels": {}
+      },
+      "attention_group": {
+        "calls": 0,
+        "inclusive_us": 0.0,
+        "runtime": {},
+        "cpu_ops": {},
+        "allocation": {},
+        "launched_kernels": {}
+      }
+    },
+    "kernel_launch_correlation_coverage": {
+      "kernels": 214057,
+      "matched_unique_launch": 214057,
+      "missing_or_ambiguous_launch": 0
+    }
+  },
+  "baseline7": {
+    "trace": "/bwykj_ssd/wangmx/output/qwen122-lora-20261122-173110/v0-20261122-173147/rank7-step5.trace.json",
+    "scopes": {
+      "original_spans": {
+        "calls": 308,
+        "inclusive_us": 1501019.376953125,
+        "runtime": {
+          "musaMemcpyAsync": {
+            "count": 308,
+            "inclusive_us": 1482190.0283203125,
+            "max_us": 33230.3427734375
+          },
+          "musaStreamSynchronize": {
+            "count": 308,
+            "inclusive_us": 426.5888671875,
+            "max_us": 7.7353515625
+          }
+        },
+        "cpu_ops": {
+          "aten::_to_copy": {
+            "count": 308,
+            "inclusive_us": 1488425.19140625,
+            "max_us": 33251.2822265625
+          },
+          "aten::copy_": {
+            "count": 308,
+            "inclusive_us": 1486613.7392578125,
+            "max_us": 33246.3427734375
+          }
+        },
+        "allocation": {},
+        "launched_kernels": {}
+      },
+      "cache_call": {
+        "calls": 0,
+        "inclusive_us": 0.0,
+        "runtime": {},
+        "cpu_ops": {},
+        "allocation": {},
+        "launched_kernels": {}
+      },
+      "attention_group": {
+        "calls": 0,
+        "inclusive_us": 0.0,
+        "runtime": {},
+        "cpu_ops": {},
+        "allocation": {},
+        "launched_kernels": {}
+      }
+    },
+    "kernel_launch_correlation_coverage": {
+      "kernels": 185252,
+      "matched_unique_launch": 185252,
+      "missing_or_ambiguous_launch": 0
+    }
+  },
+  "cached0": {
+    "trace": "/bwykj_ssd/wangmx/output/qwen122-lora-20261122-174058/v0-20261122-174135/rank0-step5.trace.json",
+    "scopes": {
+      "original_spans": {
+        "calls": 4,
+        "inclusive_us": 29844.25,
+        "runtime": {
+          "musaMemcpyAsync": {
+            "count": 4,
+            "inclusive_us": 29481.55078125,
+            "max_us": 8000.888671875
+          },
+          "musaStreamSynchronize": {
+            "count": 4,
+            "inclusive_us": 8.5029296875,
+            "max_us": 2.5087890625
+          }
+        },
+        "cpu_ops": {
+          "aten::_to_copy": {
+            "count": 4,
+            "inclusive_us": 29565.6806640625,
+            "max_us": 8024.61328125
+          },
+          "aten::copy_": {
+            "count": 4,
+            "inclusive_us": 29545.4990234375,
+            "max_us": 8019.5107421875
+          }
+        },
+        "allocation": {},
+        "launched_kernels": {}
+      },
+      "cache_call": {
+        "calls": 352,
+        "inclusive_us": 34955.462890625,
+        "runtime": {
+          "musaMemcpyAsync": {
+            "count": 4,
+            "inclusive_us": 29481.55078125,
+            "max_us": 8000.888671875
+          },
+          "musaStreamSynchronize": {
+            "count": 4,
+            "inclusive_us": 8.5029296875,
+            "max_us": 2.5087890625
+          }
+        },
+        "cpu_ops": {
+          "aten::_to_copy": {
+            "count": 4,
+            "inclusive_us": 29565.6806640625,
+            "max_us": 8024.61328125
+          },
+          "aten::copy_": {
+            "count": 4,
+            "inclusive_us": 29545.4990234375,
+            "max_us": 8019.5107421875
+          }
+        },
+        "allocation": {},
+        "launched_kernels": {}
+      },
+      "attention_group": {
+        "calls": 0,
+        "inclusive_us": 0.0,
+        "runtime": {},
+        "cpu_ops": {},
+        "allocation": {},
+        "launched_kernels": {}
+      }
+    },
+    "kernel_launch_correlation_coverage": {
+      "kernels": 214057,
+      "matched_unique_launch": 214057,
+      "missing_or_ambiguous_launch": 0
+    }
+  },
+  "cached7": {
+    "trace": "/bwykj_ssd/wangmx/output/qwen122-lora-20261122-174058/v0-20261122-174135/rank7-step5.trace.json",
+    "scopes": {
+      "original_spans": {
+        "calls": 4,
+        "inclusive_us": 24916.072265625,
+        "runtime": {
+          "musaMemcpyAsync": {
+            "count": 4,
+            "inclusive_us": 24641.107421875,
+            "max_us": 6480.6923828125
+          },
+          "musaStreamSynchronize": {
+            "count": 4,
+            "inclusive_us": 8.08203125,
+            "max_us": 2.2529296875
+          }
+        },
+        "cpu_ops": {
+          "aten::_to_copy": {
+            "count": 4,
+            "inclusive_us": 24718.2998046875,
+            "max_us": 6498.8583984375
+          },
+          "aten::copy_": {
+            "count": 4,
+            "inclusive_us": 24698.365234375,
+            "max_us": 6494.07421875
+          }
+        },
+        "allocation": {},
+        "launched_kernels": {}
+      },
+      "cache_call": {
+        "calls": 308,
+        "inclusive_us": 29453.6923828125,
+        "runtime": {
+          "musaMemcpyAsync": {
+            "count": 4,
+            "inclusive_us": 24641.107421875,
+            "max_us": 6480.6923828125
+          },
+          "musaStreamSynchronize": {
+            "count": 4,
+            "inclusive_us": 8.08203125,
+            "max_us": 2.2529296875
+          }
+        },
+        "cpu_ops": {
+          "aten::_to_copy": {
+            "count": 4,
+            "inclusive_us": 24718.2998046875,
+            "max_us": 6498.8583984375
+          },
+          "aten::copy_": {
+            "count": 4,
+            "inclusive_us": 24698.365234375,
+            "max_us": 6494.07421875
+          }
+        },
+        "allocation": {},
+        "launched_kernels": {}
+      },
+      "attention_group": {
+        "calls": 0,
+        "inclusive_us": 0.0,
+        "runtime": {},
+        "cpu_ops": {},
+        "allocation": {},
+        "launched_kernels": {}
+      }
+    },
+    "kernel_launch_correlation_coverage": {
+      "kernels": 186086,
+      "matched_unique_launch": 186086,
+      "missing_or_ambiguous_launch": 0
+    }
+  }
+}

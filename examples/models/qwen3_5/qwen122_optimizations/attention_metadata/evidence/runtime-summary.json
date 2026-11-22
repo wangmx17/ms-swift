@@ -1,0 +1,2281 @@
+{
+  "all_pass": true,
+  "checks": [
+    {
+      "name": "baseline-trace/exit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/process",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/no_compile",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/memory",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/gpu_sampling",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/metadata_all_ranks",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank17.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank2.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank26.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank16.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank29.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank5.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank8.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank9.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank1.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank13.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank20.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank19.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank25.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank31.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank22.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank30.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank3.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank24.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank27.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank23.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank15.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank4.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank12.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank28.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank11.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank14.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank7.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank0.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank10.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank21.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank18.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/attention-metadata-calls-rank6.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla_32",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank22.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank22.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank24.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank24.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank30.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank30.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank21.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank21.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank7.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank7.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank25.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank25.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank31.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank31.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank26.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank26.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank10.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank10.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank6.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank6.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank4.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank4.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank27.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank27.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank16.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank16.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank5.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank5.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank17.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank17.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank23.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank23.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank11.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank11.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank0.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank0.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank8.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank8.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank9.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank9.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank12.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank12.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank14.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank14.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank2.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank2.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank20.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank20.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank3.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank3.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank18.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank18.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank15.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank15.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank13.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank13.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank28.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank28.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank19.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank19.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank1.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank1.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank29.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-trace/fla-cache-events-rank29.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/exit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/process",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/no_compile",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/memory",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/gpu_sampling",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/metadata_all_ranks",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank17.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank2.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank26.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank16.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank29.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank5.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank8.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank9.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank1.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank13.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank20.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank19.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank25.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank31.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank22.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank30.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank3.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank24.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank27.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank23.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank15.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank4.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank12.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank28.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank11.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank14.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank7.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank0.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank10.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank21.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank18.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/attention-metadata-calls-rank6.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla_32",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank22.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank22.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank24.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank24.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank30.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank30.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank21.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank21.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank7.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank7.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank25.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank25.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank31.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank31.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank26.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank26.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank10.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank10.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank6.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank6.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank4.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank4.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank27.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank27.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank16.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank16.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank5.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank5.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank17.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank17.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank23.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank23.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank11.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank11.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank0.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank0.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank8.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank8.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank9.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank9.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank12.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank12.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank14.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank14.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank2.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank2.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank20.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank20.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank3.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank3.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank18.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank18.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank15.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank15.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank13.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank13.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank28.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank28.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank19.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank19.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank1.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank1.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank29.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-trace/fla-cache-events-rank29.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/exit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/process",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/no_compile",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/memory",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/gpu_sampling",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/metadata_all_ranks",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank17.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank2.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank26.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank16.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank29.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank5.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank8.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank9.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank1.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank13.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank20.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank19.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank25.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank31.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank22.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank30.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank3.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank24.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank27.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank23.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank15.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank4.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank12.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank28.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank11.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank14.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank7.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank0.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank10.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank21.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank18.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/attention-metadata-calls-rank6.jsonl",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla_32",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank22.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank22.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank24.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank24.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank30.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank30.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank21.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank21.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank7.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank7.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank25.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank25.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank31.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank31.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank26.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank26.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank10.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank10.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank6.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank6.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank4.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank4.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank27.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank27.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank16.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank16.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank5.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank5.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank17.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank17.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank23.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank23.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank11.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank11.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank0.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank0.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank8.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank8.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank9.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank9.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank12.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank12.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank14.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank14.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank2.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank2.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank20.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank20.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank3.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank3.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank18.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank18.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank15.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank15.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank13.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank13.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank28.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank28.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank19.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank19.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank1.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank1.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank29.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "baseline-perf/fla-cache-events-rank29.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/exit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/process",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/no_compile",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/memory",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/gpu_sampling",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/metadata_all_ranks",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank17.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank2.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank26.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank16.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank29.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank5.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank8.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank9.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank1.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank13.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank20.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank19.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank25.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank31.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank22.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank30.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank3.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank24.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank27.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank23.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank15.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank4.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank12.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank28.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank11.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank14.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank7.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank0.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank10.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank21.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank18.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/attention-metadata-calls-rank6.jsonl",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla_32",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank22.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank22.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank24.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank24.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank30.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank30.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank21.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank21.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank7.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank7.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank25.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank25.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank31.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank31.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank26.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank26.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank10.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank10.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank6.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank6.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank4.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank4.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank27.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank27.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank16.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank16.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank5.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank5.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank17.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank17.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank23.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank23.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank11.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank11.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank0.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank0.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank8.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank8.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank9.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank9.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank12.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank12.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank14.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank14.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank2.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank2.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank20.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank20.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank3.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank3.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank18.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank18.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank15.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank15.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank13.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank13.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank28.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank28.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank19.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank19.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank1.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank1.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank29.jsonl/no_bench_window",
+      "pass": true
+    },
+    {
+      "name": "cached-perf/fla-cache-events-rank29.jsonl/lookups_hit",
+      "pass": true
+    },
+    {
+      "name": "trace/config",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank25.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank25.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank21.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank21.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank17.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank17.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank12.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank12.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank14.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank14.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank28.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank28.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank15.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank15.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank22.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank22.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank18.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank18.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank23.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank23.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank30.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank30.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank6.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank6.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank20.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank20.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank24.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank24.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank10.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank10.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank26.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank26.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank16.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank16.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank29.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank29.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank3.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank3.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank0.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank0.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank9.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank9.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank8.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank8.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank27.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank27.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank4.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank4.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank19.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank19.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank11.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank11.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank2.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank2.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank31.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank31.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank7.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank7.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank1.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank1.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank5.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank5.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank13.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/lora-add-rank13.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "trace/inherited_exact",
+      "pass": true
+    },
+    {
+      "name": "perf/config",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank25.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank25.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank21.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank21.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank17.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank17.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank12.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank12.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank14.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank14.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank28.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank28.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank15.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank15.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank22.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank22.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank18.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank18.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank23.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank23.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank30.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank30.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank6.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank6.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank20.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank20.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank24.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank24.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank10.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank10.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank26.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank26.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank16.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank16.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank29.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank29.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank3.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank3.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank0.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank0.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank9.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank9.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank8.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank8.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank27.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank27.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank4.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank4.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank19.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank19.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank11.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank11.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank2.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank2.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank31.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank31.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank7.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank7.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank1.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank1.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank5.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank5.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank13.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/lora-add-rank13.json/source_hash",
+      "pass": true
+    },
+    {
+      "name": "perf/inherited_exact",
+      "pass": true
+    }
+  ],
+  "stages": {
+    "baseline-trace": {
+      "run": "/bwykj_ssd/wangmx/output/qwen122-lora-20261122-173110",
+      "completed_steps": 6,
+      "mean_seconds": 63.49258899999998,
+      "estimated_tgs_per_gpu": 514.2173450195897,
+      "packed_mean": 4081.123818,
+      "errors": [],
+      "process_samples": 144,
+      "bad_process_samples": [],
+      "compiles": [],
+      "memory": {
+        "allocated_bytes.all.peak": 73500879872,
+        "reserved_bytes.all.peak": 75606523904,
+        "num_alloc_retries": 0,
+        "num_ooms": 0
+      },
+      "whole_card_peak_mib": 80128,
+      "metadata_final_counters": {
+        "hit": 0,
+        "miss": 0,
+        "invalidated": 0,
+        "bypass": 0
+      }
+    },
+    "cached-trace": {
+      "run": "/bwykj_ssd/wangmx/output/qwen122-lora-20261122-174058",
+      "completed_steps": 6,
+      "mean_seconds": 61.4661,
+      "estimated_tgs_per_gpu": 531.1706866711895,
+      "packed_mean": 4081.123818,
+      "errors": [],
+      "process_samples": 120,
+      "bad_process_samples": [],
+      "compiles": [],
+      "memory": {
+        "allocated_bytes.all.peak": 73496896512,
+        "reserved_bytes.all.peak": 75103207424,
+        "num_alloc_retries": 0,
+        "num_ooms": 0
+      },
+      "whole_card_peak_mib": 79647,
+      "metadata_final_counters": {
+        "hit": 63604,
+        "miss": 768,
+        "invalidated": 0,
+        "bypass": 0
+      }
+    },
+    "baseline-perf": {
+      "run": "/bwykj_ssd/wangmx/output/qwen122-lora-20261122-174906",
+      "completed_steps": 10,
+      "mean_seconds": 29.139917666666665,
+      "estimated_tgs_per_gpu": 1120.4215096787107,
+      "packed_mean": 4081.123818,
+      "errors": [],
+      "process_samples": 132,
+      "bad_process_samples": [],
+      "compiles": [],
+      "memory": {
+        "allocated_bytes.all.peak": 73853006848,
+        "reserved_bytes.all.peak": 75275173888,
+        "num_alloc_retries": 0,
+        "num_ooms": 0
+      },
+      "whole_card_peak_mib": 79811,
+      "metadata_final_counters": {
+        "hit": 0,
+        "miss": 0,
+        "invalidated": 0,
+        "bypass": 0
+      },
+      "native_tflops_5_10_arithmetic_mean": 64.26532486166667
+    },
+    "cached-perf": {
+      "run": "/bwykj_ssd/wangmx/output/qwen122-lora-20261122-175808",
+      "completed_steps": 10,
+      "mean_seconds": 28.080978999999996,
+      "estimated_tgs_per_gpu": 1162.6728022552206,
+      "packed_mean": 4081.123818,
+      "errors": [],
+      "process_samples": 128,
+      "bad_process_samples": [],
+      "compiles": [],
+      "memory": {
+        "allocated_bytes.all.peak": 73863151104,
+        "reserved_bytes.all.peak": 75434557440,
+        "num_alloc_retries": 0,
+        "num_ooms": 0
+      },
+      "whole_card_peak_mib": 79964,
+      "metadata_final_counters": {
+        "hit": 106432,
+        "miss": 1280,
+        "invalidated": 0,
+        "bypass": 0
+      },
+      "native_tflops_5_10_arithmetic_mean": 66.514996998
+    }
+  }
+}

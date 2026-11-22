@@ -1,0 +1,8 @@
+{
+  "baseline_seconds": 29.139917666666665,
+  "candidate_seconds": 28.080978999999996,
+  "baseline_tgs": 1120.4215096787107,
+  "candidate_tgs": 1162.6728022552206,
+  "change": 0.03771017622521877,
+  "decision": "Pending trace compilation attribution numerical review; not adopted"
+}

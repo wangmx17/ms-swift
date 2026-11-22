@@ -1,0 +1,462 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "lengths": [
+        65,
+        66,
+        127,
+        256
+      ],
+      "padding": 0,
+      "mutation": false,
+      "repeat": 0,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        65,
+        66,
+        127,
+        256
+      ],
+      "padding": 0,
+      "mutation": false,
+      "repeat": 1,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        65,
+        66,
+        127,
+        256
+      ],
+      "padding": 0,
+      "mutation": true,
+      "repeat": 0,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        65,
+        66,
+        127,
+        256
+      ],
+      "padding": 0,
+      "mutation": true,
+      "repeat": 1,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256
+      ],
+      "padding": 0,
+      "mutation": false,
+      "repeat": 0,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256
+      ],
+      "padding": 0,
+      "mutation": false,
+      "repeat": 1,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256
+      ],
+      "padding": 0,
+      "mutation": true,
+      "repeat": 0,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256
+      ],
+      "padding": 0,
+      "mutation": true,
+      "repeat": 1,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        64,
+        65
+      ],
+      "padding": 0,
+      "mutation": false,
+      "repeat": 0,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        64,
+        65
+      ],
+      "padding": 0,
+      "mutation": false,
+      "repeat": 1,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        64,
+        65
+      ],
+      "padding": 0,
+      "mutation": true,
+      "repeat": 0,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        64,
+        65
+      ],
+      "padding": 0,
+      "mutation": true,
+      "repeat": 1,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        65,
+        257
+      ],
+      "padding": 0,
+      "mutation": false,
+      "repeat": 0,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        65,
+        257
+      ],
+      "padding": 0,
+      "mutation": false,
+      "repeat": 1,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        65,
+        257
+      ],
+      "padding": 0,
+      "mutation": true,
+      "repeat": 0,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        65,
+        257
+      ],
+      "padding": 0,
+      "mutation": true,
+      "repeat": 1,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        0,
+        65,
+        130
+      ],
+      "padding": 8,
+      "mutation": false,
+      "repeat": 0,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        0,
+        65,
+        130
+      ],
+      "padding": 8,
+      "mutation": false,
+      "repeat": 1,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        0,
+        65,
+        130
+      ],
+      "padding": 8,
+      "mutation": true,
+      "repeat": 0,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    },
+    {
+      "lengths": [
+        0,
+        65,
+        130
+      ],
+      "padding": 8,
+      "mutation": true,
+      "repeat": 1,
+      "exact": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "rng_exact": true
+    }
+  ],
+  "counts": {
+    "miss": 10,
+    "hit": 62,
+    "invalidated": 5
+  }
+}
