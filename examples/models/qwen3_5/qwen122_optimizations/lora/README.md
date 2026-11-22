@@ -1,13 +1,18 @@
-# perf(examples): fuse Qwen122 LoRA scaled residual addition
+# LoRA残差融合
 
-LoRA缩放与残差合并为torch.add(alpha)，限制BF16和scaling=4；通过源码定位替换当前进程方法，不改安装包。
+将LoRA缩放与残差相加合并为torch.add(alpha)，要求BF16和scaling=4。
 
-本次仅完成Python语法/AST、shell语法和Git差异检查；按用户要求不再进行训练复测。历史含PR12的结果不能作为本次交付性能或精度结论。合入后需重新验证loss、单步耗时、TGS及显存。未提交trace、截图、日志或测试产物。
+在仓库根目录设置环境变量：
 
-本PR直接基于main，不依赖GDN或其他未合入PR。独立使用时，将下列环境变量和CLI参数追加到现有ms-swift启动命令；不要覆盖已有external_plugins/callbacks。
+```bash
+export LORA_ADD_MODE=fused
+```
 
-LORA_ADD_MODE=fused
+将以下参数追加到现有训练命令，保留已有external_plugins和callbacks：
+
+```text
 --external_plugins examples/models/qwen3_5/qwen122_optimizations/lora/lora_add_plugin.py
 --callbacks lora_add_audit
+```
 
-head插件还需将examples/models/qwen3_5/qwen122_optimizations/head加入PYTHONPATH。若同时合入GDN整合PR，案例入口会读取本目录enable.json自动加载，无需修改公共启动脚本。
+使用GDN整合入口时，本目录的enable.json会自动装载这些配置。
