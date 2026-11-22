@@ -54,8 +54,6 @@ exec python -m swift.cli._megatron.main sft \
     --freeze_aligner true \
     --cross_entropy_loss_fusion true \
     --cross_entropy_fusion_impl te \
-    --manual_gc true \
-    --manual_gc_steps 100 \
     --lr 1e-4 \
     --lr_warmup_fraction 0.05 \
     --min_lr 1e-5 \
