@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    "head/chunked_head_runtime_plugin.py"
+  ],
+  "callbacks": [
+    "chunked_head_audit"
+  ],
+  "env": {
+    "BWY_CHUNKED_HEAD_MODE": "chunk512"
+  }
+}
