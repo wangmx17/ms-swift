@@ -5,11 +5,12 @@ checks object identity and PyTorch mutation versions of both input and output.
 Unversioned inference tensors and non-tensor inputs use the original function.
 The original validation, normalization, and exception behavior runs on misses.
 """
-from collections import OrderedDict, Counter
 import torch
+from collections import Counter, OrderedDict
 
 
 class ResolverCache:
+
     def __init__(self, original, max_entries=16):
         self.original = original
         self.max_entries = max_entries
@@ -20,14 +21,13 @@ class ResolverCache:
     def stamp(tensor):
         if tensor is None:
             return None
-        return (tensor._version, tuple(tensor.shape), tuple(tensor.stride()),
-                tensor.storage_offset(), tensor.dtype, tensor.device)
+        return (tensor._version, tuple(tensor.shape), tuple(tensor.stride()), tensor.storage_offset(), tensor.dtype,
+                tensor.device)
 
     def __call__(self, padded, actual, total_seq_len, cp_size=1):
         selected = padded if padded is not None else actual
         if (type(selected) is not torch.Tensor or selected.requires_grad
-                or selected.dtype not in (torch.int32, torch.int64)
-                or selected.numel() > 4096):
+                or selected.dtype not in (torch.int32, torch.int64) or selected.numel() > 4096):
             self.counts['bypass'] += 1
             return self.original(padded, actual, total_seq_len, cp_size)
         try:

@@ -1,7 +1,8 @@
 """Emit shell-quoted case plugin options from separate opt-in manifests."""
 import json
-from pathlib import Path
 import shlex
+from pathlib import Path
+
 root = Path(__file__).resolve().parent
 plugins, callbacks = [], []
 for group in ('lora', 'head', 'attention'):

@@ -16,7 +16,7 @@ def partition(lengths, heads):
     short = [i for i, length in enumerate(lengths) if length <= 64]
     if not long or (not short and len(long) <= limit):
         return None  # Entire call already has one appropriate backend.
-    groups = [('tilelang', long[start:start+limit]) for start in range(0, len(long), limit)]
+    groups = [('tilelang', long[start:start + limit]) for start in range(0, len(long), limit)]
     if short:
         groups.append(('fla', short))
     return groups

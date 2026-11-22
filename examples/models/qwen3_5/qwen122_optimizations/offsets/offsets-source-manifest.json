@@ -16,10 +16,10 @@
     "new_expression": "_bwy_offsets_read(cu_seqlens)"
   },
   "partial": {
-    "original_file_sha256": "af51dae9e5b205c6da70c22a5820a73bc0e5eaf694f645151e91948b181a3c3a",
-    "original_source_sha256": "4df3e9e4722e467678b631e41607c46c34527e897c4ff335a90fd02532fb9c66",
+    "original_file_sha256": "20ca05fddb950550a3e4ae3a505d09c8d541e118c5327001e5c6c633a358be21",
+    "original_source_sha256": "5ec2803ba58ac07d8d16a72e496405bb76d881eaec7e7b7930fd88c5a8ce18eb",
     "candidate_file": "partial_cached.py",
-    "candidate_sha256": "a3e7407191e755a5ac761f5b6b81c82ab98d496174c5287d2a7a3ba543d406a4",
+    "candidate_sha256": "d13e59d243ada155aaefba9d62c89aa266c5d461d52e61fdf60a95bc7064f5d2",
     "old_expression": "cu.detach().cpu().tolist()",
     "new_expression": "_bwy_offsets_read(cu)"
   }
