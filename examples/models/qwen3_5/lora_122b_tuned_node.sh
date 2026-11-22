@@ -45,8 +45,8 @@ exec python -m swift.cli._megatron.main sft \
     --micro_batch_size 2 \
     --global_batch_size 256 \
     --recompute_granularity full \
-    --recompute_method uniform \
-    --recompute_num_layers 1 \
+    --recompute_method block \
+    --recompute_num_layers 41 \
     --group_by_length false \
     --finetune true \
     --freeze_llm false \
