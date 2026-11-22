@@ -1,0 +1,14 @@
+{
+  "torch_musa_op_extension/attention/tilelang/flash_linear_attention/gdn_chunk_bwd.py": {
+    "before": "57b7297f992bb87db3404915b13314be13175861854c140d6c2caaed07acec31",
+    "after": "6138f45abd028d7296d7af1607b1c65d0172905ec7b4ed572c7b951f37443dce"
+  },
+  "torch_musa_op_extension/attention/tilelang/flash_linear_attention/gdn_chunk_bwd_scan.py": {
+    "before": "ee694553273e8192277ec389e65397a35811bf5ccab7757d82b4169353311fb0",
+    "after": "87d1cdd545726687cc831b19a8bcf8b203520593a3683b42dc18db49a8804a59"
+  },
+  "torch_musa_op_extension/attention/tilelang/flash_linear_attention/gdn_zero_beta.py": {
+    "before": null,
+    "after": "1fb2519e0986d180f1ce1ee49db17702fb1054833750bc770b86e31753ff7d06"
+  }
+}

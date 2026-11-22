@@ -1,0 +1,145 @@
+--- a/torch_musa_op_extension/attention/tilelang/flash_linear_attention/gdn_chunk_bwd.py
++++ b/torch_musa_op_extension/attention/tilelang/flash_linear_attention/gdn_chunk_bwd.py
+@@ -83 +83 @@
+-                       vmaps=None):
++                       vmaps=None, v=None):
+@@ -98 +98 @@
+-    DRhs, DKst, Ds, DdLast, dh0 = k2_fused(
++    DRhs, DKst, Ds, DdLast, dh0, dbeta_zero = k2_fused(
+@@ -100 +100 @@
+-        chunk_size=chunk_size, need_dh0=need_dh0, vmaps=vmaps,
++        chunk_size=chunk_size, need_dh0=need_dh0, vmaps=vmaps, v=v,
+@@ -106,0 +107,2 @@
++    if dbeta_zero is not None:
++        dbeta.add_(dbeta_zero)
+@@ -117,0 +120,3 @@
++        # beta=0 has a valid, generally nonzero derivative. Retain v only
++        # when the exceptional backward repair actually needs it.
++        ctx.repair_zero_beta = ctx.needs_input_grad[4] and bool((beta == 0).any())
+@@ -128 +133 @@
+-        _save_ctx(ctx, (q, k, beta_hbs, A, Hs, Delta, GPrefix),
++        _save_ctx(ctx, (q, k, beta_hbs, A, Hs, Delta, GPrefix, v if ctx.repair_zero_beta else None),
+@@ -137 +142 @@
+-        q, k, beta_hbs, A, Hs, Delta, GPrefix = ctx.saved_tensors
++        q, k, beta_hbs, A, Hs, Delta, GPrefix, v = ctx.saved_tensors
+@@ -150 +155 @@
+-            need_dh0=has_init, dbeta_dtype=ctx.input_dtypes[4], vmaps=vmaps,
++            need_dh0=has_init, dbeta_dtype=ctx.input_dtypes[4], vmaps=vmaps, v=v,
+@@ -165 +170 @@
+-    _save_ctx(ctx, (q, k, beta_hbs, A, Hs, Delta, GPrefix),
++    _save_ctx(ctx, (q, k, beta_hbs, A, Hs, Delta, GPrefix, v if ctx.repair_zero_beta else None),
+--- a/torch_musa_op_extension/attention/tilelang/flash_linear_attention/gdn_chunk_bwd_scan.py
++++ b/torch_musa_op_extension/attention/tilelang/flash_linear_attention/gdn_chunk_bwd_scan.py
+@@ -415,0 +416 @@
++    repair_zero_beta=False,
+@@ -744 +745 @@
+-                DRhs[i_b, base + r, i_h, c] = dd_s[r, c]
++                DRhs[i_b, base + r, i_h, c] = (T.if_then_else(bsh[0, r] == 0, tmp_cv[r, c].astype(input_dtype), dd_s[r, c]) if repair_zero_beta else dd_s[r, c])
+@@ -911 +912 @@
+-    dht=None, chunk_size=64, need_dh0=True, scale=None, vmaps=None,
++    dht=None, chunk_size=64, need_dh0=True, scale=None, vmaps=None, v=None,
+@@ -943,0 +945 @@
++        repair_zero_beta=v is not None,
+@@ -957,0 +960,4 @@
++    dbeta_zero = None
++    if v is not None:
++        from .gdn_zero_beta import correct_zero_beta
++        dbeta_zero = correct_zero_beta(k, v, beta, GPrefix, Delta, Hs, DRhs, vmaps)
+@@ -960 +966 @@
+-        return (*common, None)
++        return (*common, None, dbeta_zero)
+@@ -973 +979 @@
+-    return (*common, dh0)
++    return (*common, dh0, dbeta_zero)
+@@ -978 +984 @@
+-    chunk_size=64, need_dh0=True, vmaps=None,
++    chunk_size=64, need_dh0=True, vmaps=None, v=None,
+@@ -993 +999 @@
+-        vmaps=vmaps,
++        vmaps=vmaps, v=v,
+--- /dev/null
++++ b/torch_musa_op_extension/attention/tilelang/flash_linear_attention/gdn_zero_beta.py
+@@ -0,0 +1,83 @@
++"""Recover d beta at beta=0 without dividing by beta.
++
++Delta = (I + diag(beta) L)^-1 diag(beta) (v - P).
++Thus d beta = <d_rhs, v - P - L Delta>, including beta=0.
++K2 preserves unscaled d_rhs at zero rows for this exceptional path; this
++kernel consumes it, then restores those rows of d_v to zero before K3/dh0.
++The usual nonzero-beta path neither launches this kernel nor retains v.
++"""
++import torch
++import tilelang
++import tilelang.language as T
++from .gdn_varlen import map_dummy
++
++@tilelang.jit(target='musa', out_idx=[], pass_configs={
++    tilelang.PassConfigKey.TL_ENABLE_FAST_MATH: False,
++    tilelang.PassConfigKey.TL_DISABLE_WARP_SPECIALIZED: True,
++})
++def zero_beta_kernel(B, H, DK, DV, packed=False, C=64):
++    S=T.dynamic('S');SR=T.dynamic('SR');NT=T.dynamic('NT')
++    @T.prim_func
++    def kernel(
++        K:T.Tensor([B,SR,H,DK],T.bfloat16),
++        V:T.Tensor([B,SR,H,DV],T.bfloat16),
++        Beta:T.Tensor([H,B,S],T.float32),
++        Prefix:T.Tensor([H,B,S],T.float32),
++        Delta:T.Tensor([B,S,H,DV],T.bfloat16),
++        Hs:T.Tensor([B,H,NT,DK,DV],T.bfloat16),
++        DVin:T.Tensor([B,S,H,DV],T.bfloat16),
++        CMap:T.Tensor([NT,4] if packed else [1,4],T.int32),
++        DB:T.Tensor([H,B,S],T.float32),
++    ):
++        with T.Kernel(NT,B*H,threads=256) as (ic,bh):
++            b=bh//H;h=bh%H;base=ic*C
++            shift=T.alloc_var('int32');end=T.alloc_var('int32')
++            if packed:
++                shift=CMap[ic,1];end=CMap[ic,2]
++            else:
++                shift=0;end=SR
++            flags=T.alloc_fragment([C],T.int32)
++            any_zero=T.alloc_fragment([1],T.int32)
++            for r in T.Parallel(C):
++                flags[r]=T.if_then_else(base+r+shift<end and Beta[h,b,base+r]==0,1,0)
++                DB[h,b,base+r]=0
++            T.reduce_max(flags,any_zero,dim=0)
++            if any_zero[0]>0:
++                ks=T.alloc_shared([C,DK],T.bfloat16)
++                hs=T.alloc_shared([DK,DV],T.bfloat16)
++                dl=T.alloc_shared([C,DV],T.bfloat16)
++                ls=T.alloc_shared([C,C],T.bfloat16)
++                kk=T.alloc_fragment([C,C],T.float32)
++                pred=T.alloc_fragment([C,DV],T.float32)
++                within=T.alloc_fragment([C,DV],T.float32)
++                terms=T.alloc_fragment([C,DV],T.float32)
++                db=T.alloc_fragment([C],T.float32)
++                for r,c in T.Parallel(C,DK):
++                    ks[r,c]=T.if_then_else(base+r+shift<end,K[b,T.max(0,T.min(base+r+shift,end-1)),h,c],0)
++                for r,c in T.Parallel(DK,DV):
++                    hs[r,c]=Hs[b,h,ic,r,(c%8)*(DV//8)+c//8]
++                for r,c in T.Parallel(C,DV):dl[r,c]=Delta[b,base+r,h,c]
++                T.gemm(ks,hs,pred,clear_accum=True)
++                T.gemm(ks,ks,kk,transpose_B=True,clear_accum=True)
++                for r,c in T.Parallel(C,C):
++                    ls[r,c]=T.if_then_else(r>c,kk[r,c]*T.exp(Prefix[h,b,base+r]-Prefix[h,b,base+c]),0).astype(T.bfloat16)
++                T.gemm(ls,dl,within,clear_accum=True)
++                for r,c in T.Parallel(C,DV):
++                    terms[r,c]=T.if_then_else(
++                        flags[r]>0,
++                        DVin[b,base+r,h,c].astype(T.float32)*(V[b,T.max(0,T.min(base+r+shift,end-1)),h,c].astype(T.float32)-T.exp(Prefix[h,b,base+r])*pred[r,c]-within[r,c]),0)
++                T.reduce_sum(terms,db,dim=1)
++                for r in T.Parallel(C):
++                    if flags[r]>0:DB[h,b,base+r]=db[r]
++            # Restore d_v, including padding rows, before the other consumers.
++            for r,c in T.Parallel(C,DV):
++                if Beta[h,b,base+r]==0:DVin[b,base+r,h,c]=0
++    return kernel
++
++def correct_zero_beta(k,v,beta,prefix,delta,hs,dvin,vmaps=None):
++    B,_,H,DK=k.shape;DV=v.shape[-1];S=delta.shape[1]
++    db=torch.empty((H,B,S),device=k.device,dtype=torch.float32)
++    zero_beta_kernel(B,H,DK,DV,packed=vmaps is not None)(
++        k,v,beta,prefix,delta,hs,dvin,
++        vmaps.cmap if vmaps is not None else map_dummy(k.device,4),db)
++    return db
