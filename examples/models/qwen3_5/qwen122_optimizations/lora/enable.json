@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    "lora/lora_add_plugin.py"
+  ],
+  "callbacks": [
+    "lora_add_audit"
+  ],
+  "env": {
+    "LORA_ADD_MODE": "fused"
+  }
+}
