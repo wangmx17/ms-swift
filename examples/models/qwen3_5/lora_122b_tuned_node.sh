@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-# Called by mcore_qwen3_5_122b_4node_tuned_launch.sh in each training container.
-# Measured on 2026-11-19: tp1_pp1_ep8_mb2_gbs256_confirm20, 26803.9 estimated tokens/s across 32 GPUs.
-# Benchmark defaults: 20 steps, adapter-only saving; see docs/source_en/BestPractices/Qwen3_5_122B_A10B_MUSA_LoRA.md.
+# Case-local original TileLang GDN and optional optimization modules.
 set -euo pipefail
 umask 0002
+
 # Explicitly clear diagnostic launch blocking inherited from a shell.
 unset MUSA_LAUNCH_BLOCKING CUDA_LAUNCH_BLOCKING
+export GDN_ALLOCATOR_FRACTION=0.90
+export MCCL_DEBUG=WARN NCCL_DEBUG=WARN TORCH_SHOW_CPP_STACKTRACES=1 TORCH_DISABLE_ADDR2LINE=1
 export MUSA_HOME=/usr/local/musa
 export PATH=/usr/local/musa/bin:/usr/local/openmpi/bin:/usr/local/bin:$PATH
 export LD_LIBRARY_PATH=/lib64:/usr/local/mtshmem/lib:/usr/lib:/usr/lib/x86_64-linux-gnu:/usr/local/musa/lib:/usr/local/openmpi/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
@@ -14,13 +15,30 @@ export NNODES=4 NPROC_PER_NODE=8 NODE_RANK="${1:?node rank required}"
 export MASTER_ADDR=10.124.31.8 MASTER_PORT="${MASTER_PORT:-29535}"
 export MUSA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 PYTORCH_MUSA_ALLOC_CONF=expandable_segments:True
 export IMAGE_MAX_TOKEN_NUM=1024 VIDEO_MAX_TOKEN_NUM=128 FPS_MAX_FRAMES=12
-cd /bwykj_ssd/wangmx/ms-swift
+REPO=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)
+cd "$REPO"
+OPT="$REPO/examples/models/qwen3_5/qwen122_optimizations"
+export BWY_RUNTIME_ROOT="${BWY_RUNTIME_ROOT:-/bwykj_ssd/wangmx/qwen122-runtime}"
+export PYTHONPATH="$OPT/runtime:$OPT/head${PYTHONPATH:+:$PYTHONPATH}"
 export PYTHONPATH="$PWD:/home/Megatron-LM${PYTHONPATH:+:$PYTHONPATH}"
 export OUTPUT_DIR="${2:?shared output directory required}"
+export PYTHONPATH="$BWY_RUNTIME_ROOT/extension:$PYTHONPATH"
+export FLA_EXPERIMENT_MODE=reuse FLA_EXPERIMENT_ROOT="$BWY_RUNTIME_ROOT/fla-configs" FLA_CACHE_MODE=strict
+export GDN_CASE=tilelang
+case "${GDN_CASE:?}" in
+ baseline) export TRAINING_MUSA_ADAPTOR_DISABLE=megatron.ssm.gated-delta-rule.tilelang,mcore_bridge.ssm.gated-delta-rule.tilelang ;;
+ tilelang) unset TRAINING_MUSA_ADAPTOR_DISABLE ;;
+ *) exit 2 ;;
+esac
 extra=()
 if [[ -n "${MAX_STEPS:-}" ]]; then extra+=(--train_iters "$MAX_STEPS"); else extra+=(--num_train_epochs 1); fi
+export GDN_INTERNAL_RECOMPUTE_MODE=tail5
+optional_config=$(python "$OPT/optional_args.py")
+eval "$optional_config"
 exec python -m swift.cli._megatron.main sft \
     --model /bwykj_ssd/models/Qwen3.5-122B-A10B \
+    --external_plugins "$OPT/offsets/offsets_cache_plugin.py" "$OPT/resolver/resolver_cache_plugin.py" "$OPT/partial/partial_gdn_plugin.py" "$OPT/runtime/allocator_fraction_plugin.py" "$OPT/runtime/qwen122_native_flops_plugin.py" "$OPT/runtime/fla_autotune_cache_plugin.py" "$OPT/runtime/bucket_warmup_plugin.py" "$OPT/layer/layer_gdn_recompute_plugin.py" "${optional_plugins[@]}" \
+    --callbacks shared_offsets_cache resolver_cache_audit partial_gdn allocator_fraction native_flops gdn_gradstats_warmup fla_autotune_cache layer_gdn_recompute_audit "${optional_callbacks[@]}" \
     --save_safetensors true \
     --save_missing_weights true \
     --merge_lora "${MERGE_LORA:-false}" \
@@ -56,6 +74,7 @@ exec python -m swift.cli._megatron.main sft \
     --cross_entropy_fusion_impl te \
     --manual_gc true \
     --manual_gc_steps 100 \
+    --megatron_extra_kwargs '{"moe_router_fusion":false}' \
     --lr 1e-4 \
     --lr_warmup_fraction 0.05 \
     --min_lr 1e-5 \

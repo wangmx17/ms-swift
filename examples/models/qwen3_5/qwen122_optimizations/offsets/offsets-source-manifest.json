@@ -1,0 +1,26 @@
+{
+  "guard": {
+    "original_file_sha256": "8c52bfb994618639902ed7c669c1c7977ab67bcfc87641f2edb60db8558760af",
+    "original_source_sha256": "f50190ff9c1bd65041283770dd382a4d0fbb365177198bad58b067d089dbeed7",
+    "candidate_file": "guard_cached.py",
+    "candidate_sha256": "2e6a2751311b3184295fbc741786de78451637a064c1284b3199d3ec9fc9bbb3",
+    "old_expression": "cu_seqlens.detach().cpu().tolist()",
+    "new_expression": "_bwy_offsets_read(cu_seqlens)"
+  },
+  "varlen": {
+    "original_file_sha256": "afed47e894dc0548730ee6f5730012d971e03a1e00f18d9a6eb388dc81c0a132",
+    "original_source_sha256": "7f1ddc61e366318efe2f2503ba6cd2e89d002079cff13f8ae7fb1803313fb818",
+    "candidate_file": "varlen_cached.py",
+    "candidate_sha256": "88593d887753dd97cc078bc79a4101779e3cdc9f8f2949b177672913d951833b",
+    "old_expression": "cu_seqlens.tolist()",
+    "new_expression": "_bwy_offsets_read(cu_seqlens)"
+  },
+  "partial": {
+    "original_file_sha256": "af51dae9e5b205c6da70c22a5820a73bc0e5eaf694f645151e91948b181a3c3a",
+    "original_source_sha256": "4df3e9e4722e467678b631e41607c46c34527e897c4ff335a90fd02532fb9c66",
+    "candidate_file": "partial_cached.py",
+    "candidate_sha256": "a3e7407191e755a5ac761f5b6b81c82ab98d496174c5287d2a7a3ba543d406a4",
+    "old_expression": "cu.detach().cpu().tolist()",
+    "new_expression": "_bwy_offsets_read(cu)"
+  }
+}
