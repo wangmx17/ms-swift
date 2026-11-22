@@ -1,0 +1,6 @@
+{
+  "torch_musa_op_extension/attention/tilelang/flash_linear_attention/gdn_chunk_bwd.py": {
+    "before": "6138f45abd028d7296d7af1607b1c65d0172905ec7b4ed572c7b951f37443dce",
+    "after": "4d1c8e243a4cc09aad2edeed8c63ca753131e6644ae78ff5e5d34b0dddf07a54"
+  }
+}

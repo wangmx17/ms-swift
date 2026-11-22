@@ -1,0 +1,25 @@
+--- a/torch_musa_op_extension/attention/tilelang/flash_linear_attention/gdn_chunk_bwd.py
++++ b/torch_musa_op_extension/attention/tilelang/flash_linear_attention/gdn_chunk_bwd.py
+@@ -122,0 +123 @@
++        ctx.output_final_state = output_final_state
+@@ -133 +134 @@
+-        _save_ctx(ctx, (q, k, beta_hbs, A, Hs, Delta, GPrefix, v if ctx.repair_zero_beta else None),
++        _save_ctx(ctx, (q, k, v, g, beta, initial_state),
+@@ -142 +143 @@
+-        q, k, beta_hbs, A, Hs, Delta, GPrefix, v = ctx.saved_tensors
++        q, k, v, g, beta, initial_state = ctx.saved_tensors
+@@ -143,0 +145,8 @@
++        # Reproduce the exact original handoffs with the same forward kernels,
++        # inputs, precision, padding and segment boundaries. No random ops.
++        unused_o, unused_ht, A, Hs, Delta, GPrefix, beta_hbs = gdn_chunk_fwd(
++            q, k, v, g, beta, h0=initial_state, scale=ctx.scale,
++            need_final_state=ctx.output_final_state,
++            cu_seqlens=cu_seqlens, lengths=ctx.lengths)
++        del unused_o, unused_ht
++        repair_v = v if ctx.repair_zero_beta else None
+@@ -155 +164 @@
+-            need_dh0=has_init, dbeta_dtype=ctx.input_dtypes[4], vmaps=vmaps, v=v,
++            need_dh0=has_init, dbeta_dtype=ctx.input_dtypes[4], vmaps=vmaps, v=repair_v,
+@@ -170 +179 @@
+-    _save_ctx(ctx, (q, k, beta_hbs, A, Hs, Delta, GPrefix, v if ctx.repair_zero_beta else None),
++    _save_ctx(ctx, (q, k, v, g, beta, None),
