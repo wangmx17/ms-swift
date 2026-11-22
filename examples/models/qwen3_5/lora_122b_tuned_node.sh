@@ -40,8 +40,8 @@ extra=()
 if [[ -n "${MAX_STEPS:-}" ]]; then extra+=(--train_iters "$MAX_STEPS"); else extra+=(--num_train_epochs 1); fi
 exec python -m swift.cli._megatron.main sft \
     --model /bwykj_ssd/models/Qwen3.5-122B-A10B \
-    --external_plugins "$OPT/resolver/resolver_cache_plugin.py" "$OPT/partial/partial_gdn_plugin.py" "$OPT/runtime/allocator_fraction_plugin.py" "$OPT/runtime/qwen122_native_flops_plugin.py" "$OPT/runtime/trace_allocator_plugin.py" "$OPT/runtime/memory_counters_plugin.py" "$OPT/runtime/fla_autotune_cache_plugin.py" "$OPT/runtime/bucket_warmup_plugin.py" \
-    --callbacks resolver_cache_audit partial_gdn allocator_fraction native_flops gdn_gradstats_warmup gdn_trace memory_counters fla_autotune_cache \
+    --external_plugins "$OPT/offsets/offsets_cache_plugin.py" "$OPT/resolver/resolver_cache_plugin.py" "$OPT/partial/partial_gdn_plugin.py" "$OPT/runtime/allocator_fraction_plugin.py" "$OPT/runtime/qwen122_native_flops_plugin.py" "$OPT/runtime/trace_allocator_plugin.py" "$OPT/runtime/memory_counters_plugin.py" "$OPT/runtime/fla_autotune_cache_plugin.py" "$OPT/runtime/bucket_warmup_plugin.py" \
+    --callbacks shared_offsets_cache resolver_cache_audit partial_gdn allocator_fraction native_flops gdn_gradstats_warmup gdn_trace memory_counters fla_autotune_cache \
     --save_safetensors true \
     --save_missing_weights true \
     --merge_lora "${MERGE_LORA:-false}" \
