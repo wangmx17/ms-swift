@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    "attention_metadata/attention_metadata_plugin.py",
+    "attention/attention_group_plugin.py"
+  ],
+  "callbacks": [
+    "attention_metadata_audit",
+    "attention_group_audit"
+  ],
+  "env": {
+    "BWY_ATTENTION_METADATA_MODE": "cached",
+    "BWY_ATTENTION_GROUP_MODE": "group4"
+  }
+}
