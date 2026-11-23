@@ -20,14 +20,28 @@ merge=${MERGE_LORA:-false}
 [[ $merge == true || $merge == false ]] || exit 2
 [[ -z $steps || $steps =~ ^[1-9][0-9]*$ ]] && [[ $port =~ ^[0-9]+$ ]] || exit 2
 outbase=/bwykj_ssd/wangmx/output
-# Remote ranks use the shared storage owner's UID.
-run=$(setpriv --reuid=1000 --regid=1001 --clear-groups bash -ec 'mkdir -p "$1"; run="$1/qwen122-lora-$(TZ=Asia/Shanghai date +%Y%m%d-%H%M%S)"; mkdir "$run"; printf "%s\n" "$run"' _ "$outbase")
-chgrp 1000 "$run"
-chmod 2775 "$run"
+if [[ -z "${BWY_BACKGROUND_RUN:-}" ]]; then
+    # Remote ranks use the shared storage owner's UID.
+    run=$(setpriv --reuid=1000 --regid=1001 --clear-groups bash -ec 'mkdir -p "$1"; run="$1/qwen122-lora-$(TZ=Asia/Shanghai date +%Y%m%d-%H%M%S)"; mkdir "$run"; printf "%s\n" "$run"' _ "$outbase")
+    chgrp 1000 "$run"
+    chmod 2775 "$run"
+    umask 0002
+    mkdir -p "$run/logs"
+    BWY_BACKGROUND_RUN="$run" nohup bash "${BASH_SOURCE[0]}" "$@" >"$run/launcher.log" 2>&1 < /dev/null &
+    pid=$!
+    echo "$pid" > "$run/launcher.pid"
+    echo "Training started in background (PID $pid)"
+    echo "Training logs: $run/logs"
+    echo "Launcher log: $run/launcher.log"
+    echo "View training: tail -F '$run/logs/rank3.log'"
+    exit 0
+fi
+run="$BWY_BACKGROUND_RUN"
+unset BWY_BACKGROUND_RUN
 umask 0002
-mkdir -p "$run/logs"
 cleanup_failed_run() {
     status=$?
+    echo "$status" > "$run/launcher.exit"
     if ((status != 0)); then
         python "$repo/examples/models/qwen3_5/stop_lora_run.py" "$run"
         for node in "${nodes[@]:1}"; do
