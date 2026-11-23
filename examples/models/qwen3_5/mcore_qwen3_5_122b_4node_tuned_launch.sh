@@ -28,9 +28,7 @@ if [[ -z "${BWY_BACKGROUND_RUN:-}" ]]; then
     umask 0002
     mkdir -p "$run/logs"
     BWY_BACKGROUND_RUN="$run" nohup bash "${BASH_SOURCE[0]}" "$@" >"$run/launcher.log" 2>&1 < /dev/null &
-    pid=$!
-    echo "$pid" > "$run/launcher.pid"
-    echo "Training started in background (PID $pid)"
+    echo "Training started in background"
     echo "Training logs: $run/logs"
     echo "Launcher log: $run/launcher.log"
     echo "View training: tail -F '$run/logs/rank3.log'"
@@ -41,7 +39,6 @@ unset BWY_BACKGROUND_RUN
 umask 0002
 cleanup_failed_run() {
     status=$?
-    echo "$status" > "$run/launcher.exit"
     if ((status != 0)); then
         python "$repo/examples/models/qwen3_5/stop_lora_run.py" "$run"
         for node in "${nodes[@]:1}"; do
